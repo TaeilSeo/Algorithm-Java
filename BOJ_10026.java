@@ -1,5 +1,3 @@
-package baekjoon10026_0223;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.LinkedList;
