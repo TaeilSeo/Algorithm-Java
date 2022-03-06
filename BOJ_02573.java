@@ -1,5 +1,3 @@
-package baekjoon2573_0303;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.util.ArrayList;
