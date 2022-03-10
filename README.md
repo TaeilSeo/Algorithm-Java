@@ -1,4 +1,4 @@
-# BOJ
+# Algorithme
 백준 온라인 저지
 
 ## [성공]
