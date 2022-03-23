@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.Stack;
 
 public class Main {
-	static ArrayList<Character> opers;
-	static ArrayList<Integer> nums;
+	static ArrayList<Character> opers; // 연산자 저장할 arraylist
+	static ArrayList<Integer> nums; // 숫자 저장하라 arraylist
 	static int answer;
 	
     public static void main(String[] args) throws IOException {
@@ -21,17 +21,21 @@ public class Main {
         for(int i=0; i<N; i++) {
         	char cur = map[i];
         	
+		// 연산자라면
         	if( cur == '*' || cur == '+' || cur == '-' ) {
         		opers.add(cur);
         		continue;
         	}
+		// 연산자가 아니라면
         	nums.add(Character.getNumericValue(cur));
         }
         
+	// 첫번째 숫자와 처음 수행되어야 할 연산자의 인덱스번호
         dfs(nums.get(0), 0);
         System.out.println(answer);
     }
     
+	
     static int calc(char oper, int v1, int v2) {
 		switch(oper) {
 		case '*':
@@ -46,20 +50,20 @@ public class Main {
     }
     
     static void dfs(int result, int idx) {
-    	if(idx == opers.size()) {
+    	if(idx == opers.size()) { // 모든 연산자가 수행되었다면, 최댓값 비교하고 종료
     		if(result > answer) answer = result;
     		return;
     	}
     	
-    	// 괄호를 두르게 되면, 결국 기존의 순서가 역전되는 것이므로
-    	// 1. 순서가 역전되지 않음
-    	// 2. 순서가 역전됨
+    	// 경우의 수는 두가지로 나뉨
+    	// 1. 현재 계산되어야할 연산자가 수행 됨
+    	// 2. 현자 계산되어야할 연산자의 수행 안됨 -> 다음 번 연산자 수행
     	// 의 두 가지 경우이다.
     	
-    	// 1
+    	// 1. 연산 1번 수행으로 idx+=1
     	dfs(calc(opers.get(idx), result, nums.get(idx+1)) ,idx+1);
     	
-    	// 2
+    	// 2.  연산 1번 수행으로 idx+=2
     	if (idx + 2 <= opers.size() ) {
     		int temp = calc(opers.get(idx+1), nums.get(idx+1), nums.get(idx+2));
     		dfs(calc(opers.get(idx), result, temp) ,idx+2);
