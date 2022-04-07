@@ -1,6 +1,6 @@
 import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class Solution {
@@ -46,7 +46,12 @@ public class Solution {
 	}
 	
 	private static void bfs(int r, int c) {
-		Queue<Pos> q = new LinkedList<>();
+		PriorityQueue<Pos> q = new PriorityQueue<>(new Comparator<Pos>() {
+			@Override
+			public int compare(Pos o1, Pos o2) {
+				return Integer.compare(o1.sum, o2.sum);
+			}
+		});		
 		q.offer(new Pos(r, c, 0));
 		
 		while( !q.isEmpty() ) {
