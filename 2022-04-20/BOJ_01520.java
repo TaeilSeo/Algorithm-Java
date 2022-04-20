@@ -57,10 +57,10 @@ public class Main {
 			nc = c + dc[d];
 			
 			if(grid[nr][nc] != 0 && grid[r][c] > grid[nr][nc]) { // 다음 좌표의 높이가 0이 아니고, 현재보다 높이가 낮다면
-				dp[r][c] += dfs(nr, nc);
+				dp[r][c] += dfs(nr, nc); // 현재 좌표로 부터 뻗어나갔던 경로들의 경우의 수를 모두 더한다.
 			}
 		}
 		
-		return dp[r][c];
+		return dp[r][c]; // 도착점으로 부터 현재 좌표로 이어지는 경로의 수 반환
 	}
 }
