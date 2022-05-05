@@ -6,9 +6,9 @@ import java.util.PriorityQueue;
 import java.util.Scanner;
 
 public class Main {
-	static int N, K;		// (1 ≤ N, K ≤ 300,000)
+	static int N, K;	// (1 ≤ N, K ≤ 300,000)
 	static Data[] jewels;	// (0 ≤ Mi, Vi ≤ 1,000,000)
-	static int[] bags;		// (1 ≤ Ci ≤ 100,000,000)
+	static int[] bags;	// (1 ≤ Ci ≤ 100,000,000)
 
 	static long answer;
 
@@ -57,16 +57,16 @@ public class Main {
 				if(bags[k] >= jewels[n].weight) {
 					q.offer(jewels[n]);
 					start++;
-				} else {
-					Data jewel = q.poll();
-					answer += jewel.value;
+					continue;
 				}
+				
+				break;
 			}
-		}
-		
-		if( !q.isEmpty() ) {
-			Data jewel = q.poll();
-			answer += jewel.value;
+			
+			if(!q.isEmpty()) {
+				Data jewel = q.poll();
+				answer += jewel.value;
+			}
 		}
 		
 		System.out.println(answer);
